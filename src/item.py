@@ -32,4 +32,3 @@ class Item:
         self.price = self.price * Item.pay_rate
         Item.all.append(self.name)
         Item.all.append(self.price)
-
