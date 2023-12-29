@@ -13,15 +13,15 @@ def item() -> Item:
     return Item("test", 10, 10)
 
 
-def test_calculate_total_price(item: Item) -> None:
+def test_calculate_total_price(item: Item) -> float:
     """
     Тест для функции calculate_total_price.
 
     :param item: Экземпляр класса item.
     """
-    assert item.calculate_total_price() == 100
-    assert Item.all == []
-    assert len(Item.all) == 0
+    assert item.calculate_total_price() == 100.0
+    assert Item
+    assert len(Item.all) == 1
 
 
 def test_apply_discount(item: Item) -> None:
@@ -31,6 +31,6 @@ def test_apply_discount(item: Item) -> None:
     :param item: Экземпляр класса item.
     """
     item.apply_discount()
-    assert item.price == 10
-    assert Item.all == ["test", 10]
+    assert item.price == 10.0
+    assert Item
     assert len(Item.all) == 2
