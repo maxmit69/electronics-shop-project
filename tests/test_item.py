@@ -83,3 +83,11 @@ def test_name_setter(item: Item) -> None:
     assert item.name == 'СуперСмарт'
     item.name = 'Смартфон'
     assert item.name == 'Смартфон'
+
+
+def test_repr(item: Item) -> None:
+    assert repr(item) == "Item('test', 10, 10)"
+
+
+def test_str(item: Item) -> None:
+    assert str(item) == 'test'

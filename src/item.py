@@ -21,6 +21,16 @@ class Item:
         self.quantity = quantity
         Item.all.append(self)
 
+    def __repr__(self) -> str:
+        """ Преобразование экземпляра класса item в строку
+        """
+        return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
+
+    def __str__(self) -> str:
+        """ Преобразование экземпляра класса item в строку
+        """
+        return f"{self.__name}"
+
     @property
     def name(self) -> str:
         return self.__name
@@ -71,6 +81,5 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price = self.price * Item.pay_rate
-
 
 
