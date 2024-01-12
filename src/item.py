@@ -29,7 +29,7 @@ class Item:
     def __str__(self) -> str:
         """ Преобразование экземпляра класса item в строку
         """
-        return f"{self.__name}"
+        return self.__name
 
     @property
     def name(self) -> str:
