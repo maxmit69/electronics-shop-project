@@ -1,6 +1,7 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
 from src.item import Item
+from src.phone import Phone
 
 
 @pytest.fixture
@@ -11,6 +12,17 @@ def item() -> Item:
     :return: Экземпляр класса item.
     """
     return Item("test", 10, 10)
+
+
+@pytest.fixture()
+def phone() -> Phone:
+    """
+    Функция для создания экземпляра класса Phone.
+
+    :return: Экземпляр класса Phone.
+    """
+
+    return Phone('fly', 15000.0, 15, 1)
 
 
 def test_calculate_total_price(item: Item) -> float:
@@ -85,9 +97,24 @@ def test_name_setter(item: Item) -> None:
     assert item.name == 'Смартфон'
 
 
-def test_repr(item: Item) -> None:
+def test_repr(item: Item) -> str:
+    """ Тест метода __repr__
+    """
     assert repr(item) == "Item('test', 10, 10)"
 
 
-def test_str(item: Item) -> None:
+def test_str(item: Item) -> str:
+    """ Тест метода __str__
+    """
     assert str(item) == 'test'
+
+
+def test_add(item, phone) -> None:
+    """ Тест метода __add__
+    :param item Экземпляр класса item и дочерний экземпляр класс phone
+    """
+    item1 = Item("test", 10, 10)
+    phone1 = Phone('fly', 15000.0, 15, 1)
+    assert isinstance(phone1, item1.__class__) == True
+    assert item1 + phone1 == 25
+    assert phone1 + phone1 == 30
