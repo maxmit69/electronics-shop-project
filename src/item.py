@@ -31,6 +31,14 @@ class Item:
         """
         return self.__name
 
+    def __add__(self, other):
+        """ Сложение экземпляров одного класса
+        """
+        if isinstance(other, self.__class__):
+            return self.quantity + other.quantity
+        else:
+            raise TypeError("Экземпляры классов должны принадлежать одному классу")
+
     @property
     def name(self) -> str:
         return self.__name
@@ -81,5 +89,4 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price = self.price * Item.pay_rate
-
 
