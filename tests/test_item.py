@@ -118,3 +118,5 @@ def test_add(item, phone) -> None:
     assert isinstance(phone1, item1.__class__) == True
     assert item1 + phone1 == 25
     assert phone1 + phone1 == 30
+    with pytest.raises(TypeError):
+        item1 + 1
