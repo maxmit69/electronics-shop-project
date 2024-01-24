@@ -2,6 +2,8 @@
 import pytest
 from src.item import Item
 from src.phone import Phone
+import os.path
+from src.csv_error import InstantiateCSVError
 
 
 @pytest.fixture
@@ -54,7 +56,7 @@ def test_instantiate_from_csv(item: Item) -> None:
 
     :param item: Экземпляр класса item.
     """
-    Item.instantiate_from_csv('/home/sergei/PycharmProjects/electronics-shop-project/src/items.csv')
+    Item.instantiate_from_csv(os.path.dirname(__file__) + '/../src/items.csv')
     assert len(Item.all) == 5
     assert Item.all[0].name == 'Смартфон'
     assert Item.all[0].price == 100
@@ -63,6 +65,10 @@ def test_instantiate_from_csv(item: Item) -> None:
     assert Item.all[1].price == 1000
     assert Item.all[1].quantity == 3
     assert Item.all[2].name == 'Кабель'
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv(os.path.dirname(__file__) + '/../src/item_1.csv')
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv(os.path.dirname(__file__) + '/../src/test_items.csv')
 
 
 def test_string_to_number(item: Item) -> int:

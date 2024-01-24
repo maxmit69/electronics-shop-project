@@ -9,10 +9,10 @@ class KeyboardMixin:
     def change_lang(self) -> None:
         """ Метод для изменения языка
         """
-        if self.language == 'EN':
-            self.language = 'RU'
+        if self.__language == 'EN':
+            self.__language = 'RU'
         else:
-            self.language = 'EN'
+            self.__language = 'EN'
 
     @property
     def language(self) -> str:

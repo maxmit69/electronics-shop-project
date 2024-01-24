@@ -1,4 +1,5 @@
 import csv
+from src.csv_error import InstantiateCSVError
 
 
 class Item:
@@ -51,20 +52,25 @@ class Item:
             self.__name = value
 
     @classmethod
-    def instantiate_from_csv(cls, file_name: str) -> None:
+    def instantiate_from_csv(cls, file_name='../src/items.csv') -> None:
         """
         Создание экземпляра класса item из файла.
 
         :param file_name: Путь к файлу с данными по товарам.
         """
-        cls.all.clear()
-        with open(file_name, encoding="UTF=8") as csv_file:
-            reader = csv.DictReader(csv_file)
-            for row in reader:
-                name = row['name']
-                price = cls.string_to_number(row['price'])
-                quantity = cls.string_to_number(row['quantity'])
-                cls(name, price, quantity)
+        try:
+            cls.all.clear()
+            with open(file_name, encoding="UTF=8") as csv_file:
+                reader = csv.DictReader(csv_file)
+                for row in reader:
+                    name = row['name']
+                    price = cls.string_to_number(row['price'])
+                    quantity = cls.string_to_number(row['quantity'])
+                    cls(name, price, quantity)
+        except FileNotFoundError:
+            raise InstantiateCSVError("Отсутствует файл item.csv")
+        except KeyError:
+            raise InstantiateCSVError("Файл item.csv поврежден")
 
     @staticmethod
     def string_to_number(string: str) -> int:
@@ -89,4 +95,3 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price = self.price * Item.pay_rate
-
