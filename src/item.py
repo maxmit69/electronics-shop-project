@@ -68,7 +68,7 @@ class Item:
                     quantity = cls.string_to_number(row['quantity'])
                     cls(name, price, quantity)
         except FileNotFoundError:
-            raise InstantiateCSVError("Отсутствует файл item.csv")
+            raise FileNotFoundError("Отсутствует файл item.csv")
         except KeyError:
             raise InstantiateCSVError("Файл item.csv поврежден")
 

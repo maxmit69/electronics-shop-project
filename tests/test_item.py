@@ -65,7 +65,7 @@ def test_instantiate_from_csv(item: Item) -> None:
     assert Item.all[1].price == 1000
     assert Item.all[1].quantity == 3
     assert Item.all[2].name == 'Кабель'
-    with pytest.raises(InstantiateCSVError):
+    with pytest.raises(FileNotFoundError):
         Item.instantiate_from_csv(os.path.dirname(__file__) + '/../src/item_1.csv')
     with pytest.raises(InstantiateCSVError):
         Item.instantiate_from_csv(os.path.dirname(__file__) + '/../src/test_items.csv')
